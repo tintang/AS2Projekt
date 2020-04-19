@@ -1,0 +1,23 @@
+POST localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "tintangfgf",
+  "password": "tintang3PP",
+  "email": "t-tang@live.deeee"
+}
+
+
+###
+GET localhost:3000/users
+Content-Type: application/json
+
+###
+GET localhost:3000/users/10
+Content-Type: application/json
+
+
+###
+GET localhost:3000
+Content-Type: application/json
+X-AUTH-TOKEN: :c~3OpTVlGV-ef48CClL[Ezy:[)nR8O/I)&JJ]9_-c"A|T9Nbd`V7:VES@+IWkT`
