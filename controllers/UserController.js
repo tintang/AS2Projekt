@@ -1,10 +1,23 @@
-const User = require("../model/User");
+const User = require("../models/User");
 const HttpStatus = require("http-status-codes");
 
-exports.userCreate = async (req, res) => {
-    let newUser = new User(req.body);
-    let result = await newUser.save();
-    res.send(newUser);
+exports.userCreate = async (req, res, next) => {
+    const {username, password, email, type} = req.body;
+
+    let newUser = await User.create({
+        username, password, email, type
+    });
+
+    newUser.save()
+        .then((user) => {
+            res.send(user);
+        })
+        .catch(err => {
+            res.send(HttpStatus.BAD_REQUEST, {
+                status: HttpStatus.BAD_REQUEST,
+                message: err.message
+            })
+        });
 }
 
 exports.getUsers = async (req, res, next) => {
@@ -15,8 +28,15 @@ exports.getUsers = async (req, res, next) => {
         .catch(next)
 }
 
+exports.getTeachers = async (req, res, next) => {
+    User
+        .find({}, {
+            type: 'teacher'
+        }).then((teachers) => res.send(HttpStatus.OK, teachers))
+}
+
 exports.getUser = async (req, res, next) => {
-    User.findOne({id: req.params.id})
+    User.findOne({_id: req.params.id})
         .then(user => {
             if (!user) {
                 res.send(HttpStatus.NOT_FOUND, {message: "User not found"});

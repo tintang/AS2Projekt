@@ -4,7 +4,8 @@ Content-Type: application/json
 {
   "username": "tintangfgf",
   "password": "tintang3PP",
-  "email": "t-tang@live.deeee"
+  "email": "t-tang@live.deeeee",
+  "type": "teacher"
 }
 
 
@@ -13,7 +14,7 @@ GET localhost:3000/users
 Content-Type: application/json
 
 ###
-GET localhost:3000/users/10
+GET localhost:3000/users/5e9c9cb03a6ed144f91482a1
 Content-Type: application/json
 
 
@@ -21,3 +22,13 @@ Content-Type: application/json
 GET localhost:3000
 Content-Type: application/json
 X-AUTH-TOKEN: :c~3OpTVlGV-ef48CClL[Ezy:[)nR8O/I)&JJ]9_-c"A|T9Nbd`V7:VES@+IWkT`
+
+###
+POST localhost:3000/booking
+Content-Type: application/json
+
+{
+  "price": 100,
+  "bookin"
+  "bookingRecipient": 1
+}

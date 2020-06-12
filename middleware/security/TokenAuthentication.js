@@ -1,4 +1,4 @@
-const User = require("./../../model/User");
+const User = require("../../models/User");
 const HttpStatus = require("http-status-codes")
 
 module.exports = (req, res, next) => {

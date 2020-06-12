@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
 const TokenSchema = require("./Token");
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 const generateToken = require('../utils/token');
+const mongooseHelper = require('../utils/helper.mongoose');
+
+
+const TYPE_TEACHER = 'teacher';
+const TYPE_USER = 'user';
 
 const UserSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-    },
     username: {
         type: String,
         unique: true,
@@ -15,19 +16,23 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: '{PATH} is required!'
+        required: '{PATH} is required!',
+        select: false
     },
     email: {
         type: String,
         unique: true,
         required: '{PATH} is required!'
     },
+    type: {
+        type: String,
+        required: '{PATH} is required!'
+    },
     token: {
-        type: TokenSchema
+        type: TokenSchema,
+        select: false
     }
 });
-
-UserSchema.plugin(AutoIncrement,{id: "user_increment", inc_field: "id"});
 
 UserSchema.pre('save', function (next) {
     if (!this.isModified("password")) {
@@ -36,6 +41,8 @@ UserSchema.pre('save', function (next) {
     this.password = bcrypt.hashSync(this.password, 10);
     next();
 });
+
+UserSchema.post('save', mongooseHelper.onSave);
 
 UserSchema.pre('save', function (next) {
     let today = new Date();
