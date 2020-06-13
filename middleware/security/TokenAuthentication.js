@@ -1,24 +1,15 @@
-const User = require("../../models/User");
+const User = require("../../models/User").User;
 const HttpStatus = require("http-status-codes")
 
-module.exports = (req, res, next) => {
-    User.find()
-        .then(users => {
-            let test = users;
-        });
-
+module.exports = async (req, res, next) => {
     let token = req.headers["x-auth-token"];
-    User.findOne({"token.token": token})
-        .then((user) => {
-            if (!user) {
-                return res.send(HttpStatus.FORBIDDEN, {
-                    message: "Not authenticated"
-                })
-            }
-            req.user = user;
-            next();
+    let user = await User.findOne({"token.token": token})
+
+    if (!user) {
+        return res.send(HttpStatus.FORBIDDEN, {
+            message: "Not authenticated"
         })
-        .catch(err => {
-            return next(err);
-        });
-};
+    }
+    req.user = user;
+    next();
+}

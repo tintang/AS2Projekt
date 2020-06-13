@@ -2,9 +2,9 @@ POST localhost:3000/users
 Content-Type: application/json
 
 {
-  "username": "tintangfgf",
-  "password": "tintang3PP",
-  "email": "t-tang@live.deeeee",
+  "username": "tintangfgfeff",
+  "password": "tintang3PpPf",
+  "email": "t-tang@live.deefeeeee",
   "type": "teacher"
 }
 
@@ -24,11 +24,32 @@ Content-Type: application/json
 X-AUTH-TOKEN: :c~3OpTVlGV-ef48CClL[Ezy:[)nR8O/I)&JJ]9_-c"A|T9Nbd`V7:VES@+IWkT`
 
 ###
-POST localhost:3000/booking
+POST localhost:3000/bookings
 Content-Type: application/json
+X-AUTH-TOKEN: n.?kx2J*%z6=[xT_'vxyAzQgNx-4O09]>]hh@hvbrN8~M}~{Y^Gyk]T@AE,v7TPn
 
 {
   "price": 100,
-  "bookin"
-  "bookingRecipient": 1
+  "user": "5e9c9cb83a6ed144f91482a3",
+  "bookingRecipient": "5e9c9cb03a6ed144f91482a1"
 }
+
+###
+GET localhost:3000/bookings
+Content-Type: application/json
+
+###
+GET localhost:3000/bookings/5ee4e5db0b63351d09f1c965
+Content-Type: application/json
+
+###
+POST localhost:3000/listings
+Content-Type: application/json
+X-AUTH-TOKEN: $uj_MYsmP7o'vE&)fMg3U9AkqgOs{p6o)/.v>F=?k9u9Y+5yr>Oe0[Bqb[9f{1AK
+
+{
+  "title": "HEllo World",
+  "body": "Das ist ein Test",
+  "price": 100
+}
+

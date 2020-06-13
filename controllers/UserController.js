@@ -1,10 +1,10 @@
-const User = require("../models/User");
+const User = require("../models/User").User;
 const HttpStatus = require("http-status-codes");
 
 exports.userCreate = async (req, res, next) => {
     const {username, password, email, type} = req.body;
 
-    let newUser = await User.create({
+    let newUser = new User({
         username, password, email, type
     });
 

@@ -1,5 +1,6 @@
 const userRouter = require("./router/User");
 const listingRouter = require("./router/Listing");
+const bookingRouter = require("./router/Booking");
 const mongoose = require('mongoose')
 const express = require("express");
 const bodyParser = require("body-parser")
@@ -26,6 +27,7 @@ const init = () => {
     app.listen(port, () => console.log("app is listening"));
     app.use("/users", userRouter);
     app.use("/listings", listingRouter);
+    app.use("/bookings", bookingRouter);
 
 
     app.get('/', (request, response) =>

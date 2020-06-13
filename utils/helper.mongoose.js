@@ -5,7 +5,7 @@ const onSave = (error, doc, next) => {
         });
         next(new Error(invalidFields));
     } else {
-        next();
+        return next();
     }
 }
 

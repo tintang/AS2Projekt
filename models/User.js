@@ -17,7 +17,6 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: '{PATH} is required!',
-        select: false
     },
     email: {
         type: String,
@@ -30,7 +29,6 @@ const UserSchema = new mongoose.Schema({
     },
     token: {
         type: TokenSchema,
-        select: false
     }
 });
 

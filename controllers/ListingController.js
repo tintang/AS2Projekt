@@ -1,9 +1,19 @@
 const Listing = require("../models/Listing");
+const User = require("../models/User").User;
 const HttpStatus = require("http-status-codes");
 
 exports.postListing = async (req, res, next) => {
-    const {username, password, email, type} = req.body;
-    let newListing = new Listing(req.body);
+    const {title, body, price} = req.body;
+    const userId = await req.user._id.toString();
+    const user = await User.findOne({_id: userId});
+
+    let test = user._id.toString();
+    let newListing = await Listing.create({
+        title: title,
+        body: req.body.body,
+        price: price,
+        creator: user
+    });
 
     newListing.save()
         .then((listing) => {

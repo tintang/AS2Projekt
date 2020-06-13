@@ -1,8 +1,12 @@
 const Booking = require("../models/Booking");
+const User = require("../models/User").User;
 const HttpStatus = require("http-status-codes");
 
 exports.postBooking = async (req, res, next) => {
-    const {price, user, bookingRecipient} = req.body;
+    const {price} = req.body;
+    const user = await User.findOne({"_id": req.body.user});
+    const bookingRecipient = await User.findOne({"_id": req.body.bookingRecipient});
+
     let newBooking = await Booking.create({
         price, user, bookingRecipient
     });
