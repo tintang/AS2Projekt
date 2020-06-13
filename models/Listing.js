@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UserSchema = require("User");
+const UserSchema = require("./User").UserSchema;
 const mongooseHelper = require("../utils/helper.mongoose");
 
 const ListingSchema = new mongoose.Schema({
@@ -12,7 +12,7 @@ const ListingSchema = new mongoose.Schema({
         required: '{PATH} is required'
     },
     creator: {
-        type: User,
+        type: UserSchema,
         required: '{PATH} is required'
     },
     price: {
